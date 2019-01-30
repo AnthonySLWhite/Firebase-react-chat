@@ -1,0 +1,50 @@
+{
+  "name": "devenv-dom",
+  "version": "1.0.0",
+  "description": "Base files for new DOM project!",
+  "scripts": {
+    "start": "nps",
+    "build": "nps build"
+  },
+  "author": "Anthony White",
+  "license": "",
+  "dependencies": {
+    "@babel/polyfill": "^7.2.5",
+    "components": "^0.1.0",
+    "firebase": "^5.8.1",
+    "firebaseui": "^3.5.2",
+    "js-cookie": "^2.2.0",
+    "nps": "^5.9.3",
+    "nps-utils": "^1.7.0",
+    "object-hash": "^1.3.1",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-router": "^4.3.1",
+    "swift-onchange": "^1.0.3",
+    "validator": "^10.11.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.4.4",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "6.24.1",
+    "browser-sync": "^2.26.3",
+    "cssnano": "^4.1.8",
+    "eslint": "^5.12.0",
+    "eslint-config-google": "^0.11.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-config-problems": "^2.0.0",
+    "eslint-plugin-fp": "2.3.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.12.3",
+    "localtunnel": "^1.9.1",
+    "node-sass": "^4.11.0",
+    "parcel-bundler": "^1.11.0",
+    "postcss": "^7.0.8",
+    "postcss-cli": "^6.1.1",
+    "prettier": "^1.15.3"
+  }
+}

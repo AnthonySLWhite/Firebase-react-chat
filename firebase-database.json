@@ -1,0 +1,29 @@
+{
+  "chat": {
+    // Hashed email hash('example@email.com')
+    "afebdb79ae6673ce6c06ebcaeda5f0bc7386a304": {
+      "id": 1,
+      "lastUpdate": "TIMESTAMP from latest message",
+      "customer": {
+        "name": "Cliente's name",
+        "UID": "Anonymous or email ID"
+      },
+      "messages": [
+        {
+          "id": 1,
+          "from": 0,
+          // 0 for client
+          // 1 for owner
+          "message": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+
+          "time": "TIMESTAMP"
+        }
+      ]
+    }
+  },
+  "html": {
+    "header": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+
+    "footer": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+  }
+}
