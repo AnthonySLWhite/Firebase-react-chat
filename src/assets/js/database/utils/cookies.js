@@ -1,25 +1,25 @@
 import hash from 'object-hash';
 import Cookies from 'js-cookie';
+import state from '../state';
 /**
  * Set user by saving the email on the cookies
  */
 const set = email => {
   const UID = hash(email);
   Cookies.set(hash('email'), UID);
-  return UID;
+  state.UID = UID;
+  return 1;
 };
-
-/**
- * Get UID from email
- * @returns UID or 0 if no email is suplied
- */
-const getEmailHash = email => hash(email) || 0;
 
 /**
  * Get user from cookies if it exists
  * @returns UID or 0 if no UID is saved in cookies
  */
-const get = () => Cookies.get(hash('email')) || 0;
+const get = () => {
+  const UID = Cookies.get(hash('email')) || 0;
+  UID ? (state.UID = UID) : 0;
+  return UID;
+};
 
 /**
  * Remove user from cookies
@@ -29,16 +29,18 @@ const remove = () => Cookies.remove(hash('email'));
 /**
  * Create a timestamp hash for temporary user generation
  *
- * @param x If 1 then user will be set to cookies and then returned
+ * @param x If 1 then user will not be set to cookies
  * @returns Temporary UID
  */
 const quickHash = x => {
+  const timestamp = Date.now();
+  const UID = hash(timestamp);
+  state.UID = UID;
   if (x) {
-    const timestamp = Date.now();
-    set(timestamp);
-    return hash(timestamp);
+    return UID;
   }
-  return hash(Date.now());
+  set(timestamp);
+  return UID;
 };
 
 export default {
@@ -46,6 +48,5 @@ export default {
   get,
   remove,
   quickHash,
-  getEmailHash,
 };
 export { get };

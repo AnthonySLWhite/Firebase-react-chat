@@ -51,7 +51,7 @@ module.exports = {
     'fp/no-events': 2,
     'fp/no-get-set': 2,
     'fp/no-let': 0,
-    'fp/no-loops': 0,
+    'fp/no-loops': 1,
     'fp/no-nil': 0,
     'fp/no-proxy': 2,
     'fp/no-rest-parameters': 2,
