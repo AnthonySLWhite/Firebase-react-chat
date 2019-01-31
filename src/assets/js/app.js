@@ -10,10 +10,10 @@ import Msgs from './database/components/Msgs';
 import state from './database/state';
 // ----- End Imports ----- //
 state.signedIn = false;
-const checkLogged = () => (state.signedIn ? 1 : 0);
+const checkIfLogged = () => (state.signedIn ? 1 : 0);
 const users = {
   createUser: () => {
-    if (checkLogged()) {
+    if (checkIfLogged()) {
       state.error('User already Logged in!');
       return 0;
     }
@@ -23,7 +23,7 @@ const users = {
     return 1;
   },
   login: async email => {
-    if (checkLogged()) {
+    if (checkIfLogged()) {
       state.error('User already Logged in!');
       return 0;
     }
@@ -45,8 +45,7 @@ const users = {
     }
     const user = await dbGet
       .chatID()
-      .then(chatID => (chatID ? 1 : 0));
-    user ? (state.signedIn = true) : 0;
+      .then(chatID => (chatID ? (state.signedIn = true) : 0));
     return user ? 1 : 0;
   },
   saveOrSignup: async email => {
@@ -56,27 +55,36 @@ const users = {
     }
     const x = state;
     if (!x.signedIn && !x.UID && !x.chatID) {
-      users.createUser(email);
+      users.createUser();
     }
-    const oldUID = state.UID;
-    Cookies.set(email);
-    const user = await dbGet
-      .chatID()
-      .then(chatID => (chatID ? 1 : 0));
-    user ? 1 : Chat.create(email);
+    Chat.save(email);
     state.signedIn = true;
-    return user;
+    return 1;
   },
-  logout: async () => {
-    if (!checkLogged()) {
+  logout: () => {
+    if (!checkIfLogged()) {
       state.error('User not Logged in!');
       return 0;
     }
     state.signedIn = false;
+    state.admin = false;
     state.UID = 0;
     state.chatID = 0;
   },
-  exists: Cookies.get,
+  storedUser: Cookies.get,
+  admin: {
+    login: (email, pass) => {},
+    create: (email, pass) => {
+      !state.admin
+        ? state.error('You need admin permissions to do that!')
+        : 0;
+    },
+    delete: email => {
+      if (!state.admin) {
+        state.error('You need admin permissions to do that!');
+      }
+    },
+  },
 };
 
 const msgs = {

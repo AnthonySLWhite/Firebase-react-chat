@@ -4,7 +4,7 @@ module.exports = {
     es6: true,
     browser: true,
     node: true,
-    mocha: false,
+    mocha: true,
   },
   parser: 'babel-eslint',
   parserOptions: {

@@ -14,7 +14,9 @@ const chat = async (dbpath = '') => {
 };
 const chatID = async () => {
   const UID = state.UID;
+  console.log('before');
   const db = firebase.database();
+  console.log('after');
   const snap = await db.ref(`users/${UID}`).once('value');
   const chatID = snap.toJSON();
   chatID ? (state.chatID = chatID) : 0;

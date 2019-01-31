@@ -1,10 +1,15 @@
-import '../css/style.css';
+// ----- Package Imports ----- //
 import React from 'react';
 import ReactDOM from 'react-dom';
+// ----- File Imports ----- //
+import '../css/style.css';
 import ChatApp from './app';
+// ----- End Imports ----- //
+
 const Chat = ChatApp(1);
+export { Chat };
+
 const renderMsgs = messages => {
-  console.log(messages);
   const msgs = [];
   Object.keys(messages).map(key => {
     const x = messages[key];
@@ -24,7 +29,7 @@ class App extends React.Component {
   }
   componentDidMount() {
     window.debug = Chat.debug;
-    if (Chat.users.exists()) {
+    if (Chat.users.storedUser()) {
       Chat.users
         .oldUser()
         .then(x =>
@@ -80,7 +85,7 @@ class App extends React.Component {
           id="sendMsgs"
           onClick={() => {
             const text = document.getElementById('text');
-            Chat.msgs.send(text.value);
+            Chat.msgs.send(text.value, 1);
             text.value = '';
           }}
         >

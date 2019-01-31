@@ -1,4 +1,4 @@
-import hash from 'object-hash';
+import hash from 'js-sha512';
 import Cookies from 'js-cookie';
 import state from '../state';
 /**
@@ -33,7 +33,7 @@ const remove = () => Cookies.remove(hash('email'));
  * @returns Temporary UID
  */
 const quickHash = x => {
-  const timestamp = Date.now();
+  const timestamp = Date.now().toString();
   const UID = hash(timestamp);
   state.UID = UID;
   if (x) {

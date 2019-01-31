@@ -54,14 +54,16 @@ module.exports = {
         },
       },
       test: {
-        /*
-        TODO
-        - Summary: Testing for Frontend
-        * Description: Testing tool might get added in the future
-        */
-        script: '',
-        description: '',
-        hiddenFromHelp: true,
+        default: {
+          script:
+            'cross-env NODE_ENV=development mocha --require babel-core/register src/**/*.test.js',
+          description: 'Mocha test',
+        },
+        watch: {
+          script:
+            'cross-env NODE_ENV=development nodemon --exec "npm start dom.test"',
+          description: 'Mocha test watcher',
+        },
       },
     },
     /*
