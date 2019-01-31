@@ -28,7 +28,16 @@ const save = async email => {
   const userPath = db.ref(`users/`);
   userPath.child(UID).remove();
   Cookies.set(email);
-  userPath.update({ [UID]: state.chatID });
+  const chatID = state.chatID;
+  userPath.update({ [UID]: chatID });
+  const chatPath = db.ref(`chat/${chatID}/client/email`);
+  chatPath.update(email);
+  chatPath.once('value');
+  /*
+  FIXME
+  - Summary: Change email inside client
+  */
+  console.log();
   return 1;
 };
 export default {
